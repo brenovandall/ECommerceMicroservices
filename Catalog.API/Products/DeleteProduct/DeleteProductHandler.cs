@@ -1,10 +1,19 @@
 ﻿using BuildingBlocks.CQRS;
+using Catalog.API.Products.UpdateProduct;
 using System.Windows.Input;
 
 namespace Catalog.API.Products.DeleteProduct;
 
 public record DeleteProductCommand(Guid Id) : ICommand<DeleteProductResult>;
 public record DeleteProductResult(bool IsSuccess);
+public class UpdateProductCommandValidator : AbstractValidator<DeleteProductCommand>
+{
+    public UpdateProductCommandValidator()
+    {
+        RuleFor(x => x.Id).NotEmpty().WithMessage("Id must be completed and needs to exist");
+    }
+}
+
 public class DeleteProductCommandHandler(IDocumentSession session, ILogger<DeleteProductCommandHandler> logger)
     : ICommandHandler<DeleteProductCommand, DeleteProductResult>
 {
