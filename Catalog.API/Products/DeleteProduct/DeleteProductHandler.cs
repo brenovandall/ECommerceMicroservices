@@ -1,6 +1,4 @@
 ﻿using BuildingBlocks.CQRS;
-using Catalog.API.Products.UpdateProduct;
-using System.Windows.Input;
 
 namespace Catalog.API.Products.DeleteProduct;
 
