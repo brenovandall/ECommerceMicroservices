@@ -10,3 +10,7 @@ global using BuildingBlocks.Exceptions;
 global using Bogus;
 global using BuildingBlocks.Exceptions.Handler;
 global using Catalog.API.Data;
+global using BuildingBlocks.CQRS;
+global using Marten.Pagination;
+global using HealthChecks.UI.Client;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
