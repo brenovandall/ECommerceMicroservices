@@ -1,14 +1,13 @@
-namespace Basket.API.Basket.GetBasket;
+﻿namespace Basket.API;
 
 // public record GetBasketRequest(string Username);
-public record GetBasketResponse(ShoppingCart Basket);
+public record GetBasketResponse(ShoppingCart Cart);
 
 public class GetBasketEndpoint : ICarterModule
 {
-    public void AddRoutes(IEndpointRouteBuilder app) 
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.Map("/basket/{username}", async (string username, ISender sender) => 
-        {
+        app.Map("/basket/{username}", async (string username, ISender sender) => {
             var result = await sender.Send(new GetBasketQuery(username));
 
             var response = result.Adapt<GetBasketResponse>();

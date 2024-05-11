@@ -7,14 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Carter" Version="8.0.0" />
+    <PackageReference Include="Carter" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Catalog.API\Catalog.API.csproj" />
-    <ProjectReference Include="..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
+    <Folder Include="Basket/CheckoutBasket/" />
+    <Folder Include="Basket/DeleteBasket/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
   </ItemGroup>
 
 </Project>
