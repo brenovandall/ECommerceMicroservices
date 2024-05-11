@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Basket.API;
+﻿namespace Basket.API;
 
 public record StoreBasketCommand(ShoppingCart Cart) : ICommand<StoreBasketResult>;
 public record StoreBasketResult(string Username);
