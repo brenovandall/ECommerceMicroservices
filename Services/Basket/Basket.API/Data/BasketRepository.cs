@@ -2,14 +2,6 @@
 
 public class BasketRepository (IDocumentSession _session) : IBasketRepository
 {
-    public async Task<bool> DeleteBasket(string Username, CancellationToken cancellationToken = default)
-    {
-        _session.Delete<ShoppingCart>(Username);
-        await _session.SaveChangesAsync();
-
-        return true;
-    }
-
     public async Task<ShoppingCart> GetBasket(string Username, CancellationToken cancellationToken = default)
     {
         var basket = await _session.LoadAsync<ShoppingCart>(Username, cancellationToken);
@@ -23,5 +15,13 @@ public class BasketRepository (IDocumentSession _session) : IBasketRepository
         await _session.SaveChangesAsync();
         
         return Basket;
+    }
+
+    public async Task<bool> DeleteBasket(string Username, CancellationToken cancellationToken = default)
+    {
+        _session.Delete<ShoppingCart>(Username);
+        await _session.SaveChangesAsync();
+
+        return true;
     }
 }
