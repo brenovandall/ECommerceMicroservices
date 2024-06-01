@@ -15,7 +15,7 @@ builder.Services.AddMediatR(config =>
 
 builder.Services.AddMarten(options =>
 {
-    options.Connection(builder.Configuration.GetConnectionString("connect_to_database")!);
+    options.Connection(builder.Configuration.GetConnectionString("database")!);
     options.Schema.For<ShoppingCart>().Identity(x => x.Username);
 }).UseLightweightSessions();
 
@@ -29,10 +29,20 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+builder.Services.AddHealthChecks()
+    .AddNpgSql(builder.Configuration.GetConnectionString("database")!)
+    .AddRedis(builder.Configuration.GetConnectionString("Redis")!);
+
 var app = builder.Build();
 
 app.MapCarter();
 
 app.UseExceptionHandler(options => {});
+
+app.MapHealthChecks("/health",
+    new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+    });
 
 app.Run();
