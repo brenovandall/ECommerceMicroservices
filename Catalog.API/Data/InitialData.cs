@@ -16,16 +16,53 @@ public class InitialData : IInitialData
 
     private static IEnumerable<Product> GetPreconfiguredData()
     {
-        var faker = new Faker<Product>()
-            .RuleFor(p => p.Id, f => f.Random.Guid())
-            .RuleFor(p => p.Name, f => f.Commerce.ProductName())
-            .RuleFor(p => p.Description, f => f.Commerce.ProductDescription())
-            .RuleFor(p => p.ImageFile, f => f.Image.PicsumUrl())
-            .RuleFor(p => p.Price, f => f.Random.Decimal(1m, 1000m))
-            .RuleFor(p => p.Category, f => new List<string> { f.Commerce.Categories(1)[0], f.Commerce.Categories(1)[0] });
-
-        var products = faker.Generate(10);
-
-        return products;
+        return new List<Product>
+        {
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Smartphone",
+                Description = "Latest model with advanced features",
+                ImageFile = "https://example.com/images/smartphone.jpg",
+                Price = 699.99m,
+                Category = new List<string> { "Electronics", "Mobile" }
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Laptop",
+                Description = "High performance laptop for professionals",
+                ImageFile = "https://example.com/images/laptop.jpg",
+                Price = 999.99m,
+                Category = new List<string> { "Electronics", "Computers" }
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Smartwatch",
+                Description = "Wearable technology for health tracking",
+                ImageFile = "https://example.com/images/smartwatch.jpg",
+                Price = 199.99m,
+                Category = new List<string> { "Electronics", "Wearables" }
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Tablet",
+                Description = "Portable and powerful tablet for all your needs",
+                ImageFile = "https://example.com/images/tablet.jpg",
+                Price = 499.99m,
+                Category = new List<string> { "Electronics", "Mobile" }
+            },
+            new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = "Wireless Earbuds",
+                Description = "Noise-cancelling wireless earbuds",
+                ImageFile = "https://example.com/images/earbuds.jpg",
+                Price = 149.99m,
+                Category = new List<string> { "Electronics", "Audio" }
+            }
+        };
     }
 }

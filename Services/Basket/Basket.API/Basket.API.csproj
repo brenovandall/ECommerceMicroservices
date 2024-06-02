@@ -11,10 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Basket\CheckoutBasket\**" />
+    <Content Remove="Basket\CheckoutBasket\**" />
+    <EmbeddedResource Remove="Basket\CheckoutBasket\**" />
+    <None Remove="Basket\CheckoutBasket\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="8.0.0" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
     <PackageReference Include="Carter" Version="8.1.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
     <PackageReference Include="Marten" Version="7.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0" />
@@ -24,11 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Basket/CheckoutBasket/" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
+    <Protobuf Include="..\..\Discount\Discount.Grpc\Protos\discount.proto" GrpcServices="Client">
+      <Link>Protos\discount.proto</Link>
+    </Protobuf>
   </ItemGroup>
 
 </Project>
