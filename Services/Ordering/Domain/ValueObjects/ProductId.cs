@@ -1,10 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Domain.ValueObjects;
 
-namespace Domain.ValueObjects;
-internal class ProductId
+public record ProductId
 {
+    public Ulid Value { get; }
+    private ProductId(Ulid value) => Value = value;
+
+    public static ProductId Of(Ulid value)
+    {
+        ArgumentNullException.ThrowIfNull(value, nameof(value));
+
+        if (value == Ulid.Empty)
+            throw new DomainException("Product id cannot be empty");
+
+        return new ProductId(value);
+    }
 }
