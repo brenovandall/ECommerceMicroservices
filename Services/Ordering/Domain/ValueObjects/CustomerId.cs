@@ -2,14 +2,14 @@
 
 public record CustomerId
 {
-    public Ulid Value { get; }
-    private CustomerId(Ulid value) => Value = value;
+    public Guid Value { get; }
+    private CustomerId(Guid value) => Value = value;
 
-    public static CustomerId Of(Ulid value)
+    public static CustomerId Of(Guid value)
     {
         ArgumentNullException.ThrowIfNull(value, nameof(value));
 
-        if (value == Ulid.Empty)
+        if (value == Guid.Empty)
             throw new DomainException("Customer id cannot be empty");
 
         return new CustomerId(value);

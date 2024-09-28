@@ -2,14 +2,14 @@
 
 public record ProductId
 {
-    public Ulid Value { get; }
-    private ProductId(Ulid value) => Value = value;
+    public Guid Value { get; }
+    private ProductId(Guid value) => Value = value;
 
-    public static ProductId Of(Ulid value)
+    public static ProductId Of(Guid value)
     {
         ArgumentNullException.ThrowIfNull(value, nameof(value));
 
-        if (value == Ulid.Empty)
+        if (value == Guid.Empty)
             throw new DomainException("Product id cannot be empty");
 
         return new ProductId(value);
